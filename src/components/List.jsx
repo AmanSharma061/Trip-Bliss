@@ -5,6 +5,7 @@ import { useState, useRef, createRef } from 'react'
 import { useMap } from '../contexts/mapContext/mapContextProvider'
 import Placedetails from './Placedetails'
 import { getPlacesData } from '../Api/data'
+import Map from './Map'
 function List ({ coordinates, bounds, childclicked }) {
   const [type, setType] = useState('restaurants')
   const [rating, setRating] = useState(0)
@@ -28,12 +29,16 @@ function List ({ coordinates, bounds, childclicked }) {
     const sw = bounds.sw
     // setIsLoading(true)
 
-    getPlacesData(type, ne, sw).then(data => {
-      setPlaces(data.filter(place => place.name && place.num_reviews > 0))
-      // filteredData(places, rating)
-      // let xx = false
-      // setIsLoading(xx)
-    })
+    if(ne && sw){
+      getPlacesData(type, ne, sw).then(data => {
+
+      
+        setPlaces(data.filter(place => place.name && place.num_reviews > 0))
+  
+      })
+    }
+    
+
   }, [coordinates, bounds, type, rating])
 
   return (
@@ -43,6 +48,11 @@ function List ({ coordinates, bounds, childclicked }) {
           Hotels , Resturants and Attractions Around You
         </h1>
       </div> */}
+      <div className='hidden'>
+      <Map
+       type={type}
+      />
+      </div>
       <div className='grid grid-cols-3 md:grid-cols-7 md:px-2 ml-4 font-semibold  md:gap-x-32  gap-x-8 '>
         <div>
           <h1 className='px-2 py-1'>Type</h1>
@@ -76,7 +86,7 @@ function List ({ coordinates, bounds, childclicked }) {
       </div>
 
       {/* Resturants Details Card */}
-      <div className='overflow-scroll h-[75vh]  mt-5  shadow-inner mx-2'>
+      <div className=' h-[75vh]  mt-5 overflow-x-scroll shadow-inner mx-2'>
         {filtered.length ? (
           <>
             {filtered?.map((place, i) => (

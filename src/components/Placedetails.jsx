@@ -23,9 +23,7 @@ if(selected)
             <img
               class='w-full h-52 object-cover'
               src={
-                place.photo
-                  ? place.photo.images.large.url
-                  : 'https://unsplash.com/photos/brown-and-gray-concrete-store-nmpW_WwwVSc'
+                place.photo?place.photo.images.large.url:"https://images.unsplash.com/photo-1535850452425-140ee4a8dbae?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               }
               alt='food'
             />

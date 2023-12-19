@@ -9,7 +9,7 @@ import { getPlacesData } from './Api/data'
 import { useMap } from './contexts/mapContext/mapContextProvider'
 function App () {
   const { places, setPlaces,filtered } = useMap()
-  const [coordinates, setCoordinates] = useState({ lat: 32.7266, lng: 74.857 })
+  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 })
   const [bounds, setBounds] = useState({})
 
 
