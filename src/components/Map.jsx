@@ -9,7 +9,6 @@ import { useMap } from '../contexts/mapContext/mapContextProvider'
 function Map ({ setCoordinates, setBounds, coordinates, places }) {
   const { setChildClicked } = useMap()
 
-
   return (
     <div>
       <div className='h-[87vh] w-[100%]  py-2 px-2'>
@@ -23,8 +22,8 @@ function Map ({ setCoordinates, setBounds, coordinates, places }) {
             setCoordinates({ lat: e.center.lat, lng: e.center.lng })
             setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw })
           }}
+
        
-          // onChildClick={child => setChildClicked(child)}
         >
           {/* Small card with resturant image and name  */}
           {places?.map((place, i) => (
@@ -40,7 +39,9 @@ function Map ({ setCoordinates, setBounds, coordinates, places }) {
                 src={
                   place.photo
                     ? place.photo.images.small.url
-                    :(place.photo?place.photo.images.large.url:"https://images.unsplash.com/photo-1576300292702-bb2ba4d4c15c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+                    : place.photo
+                    ? place.photo.images.large.url
+                    : 'https://images.unsplash.com/photo-1576300292702-bb2ba4d4c15c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                 }
                 alt="resturant's image"
               />

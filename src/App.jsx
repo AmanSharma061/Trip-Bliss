@@ -8,10 +8,9 @@ import { getPlacesData } from './Api/data'
 
 import { useMap } from './contexts/mapContext/mapContextProvider'
 function App () {
-  const { places, setPlaces,filtered } = useMap()
+  const { places, setPlaces, filtered } = useMap()
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 })
   const [bounds, setBounds] = useState({})
-
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -23,14 +22,13 @@ function App () {
 
   return (
     <>
-      <Header setCoordinates={setCoordinates}/>
+      <Header setCoordinates={setCoordinates} />
       <div className='grid md:grid-cols-3 gap-y-1  '>
         <List
           places={places}
           setPlaces={setPlaces}
           coordinates={coordinates}
           bounds={bounds}
-         
         />
 
         <div className='grid col-span-2'>
@@ -39,7 +37,6 @@ function App () {
             setBounds={setBounds}
             coordinates={coordinates}
             places={filtered.length ? filtered : places}
-          
           />
         </div>
       </div>

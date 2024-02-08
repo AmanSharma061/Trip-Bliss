@@ -1,72 +1,12 @@
 import React from 'react'
-import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import {useState } from 'react'
+import { Dialog } from '@headlessui/react'
 import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon
+  Bars3Icon, XMarkIcon
 } from '@heroicons/react/24/outline'
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon
-} from '@heroicons/react/20/solid'
-import TextField from '@mui/material/TextField'
-import { Autocomplete } from '@react-google-maps/api'
+
 function Header ({ setCoordinates }) {
-  const products = [
-    {
-      name: 'Analytics',
-      description: 'Get a better understanding of your traffic',
-      href: '#',
-      icon: ChartPieIcon
-    },
-    {
-      name: 'Engagement',
-      description: 'Speak directly to your customers',
-      href: '#',
-      icon: CursorArrowRaysIcon
-    },
-    {
-      name: 'Security',
-      description: 'Your customers’ data will be safe and secure',
-      href: '#',
-      icon: FingerPrintIcon
-    },
-    {
-      name: 'Integrations',
-      description: 'Connect with third-party tools',
-      href: '#',
-      icon: SquaresPlusIcon
-    },
-    {
-      name: 'Automations',
-      description: 'Build strategic funnels that will convert',
-      href: '#',
-      icon: ArrowPathIcon
-    }
-  ]
-  const callsToAction = [
-    { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-    { name: 'Contact sales', href: '#', icon: PhoneIcon }
-  ]
-
-  function classNames (...classes) {
-    return classes.filter(Boolean).join(' ')
-  }
-
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [srch, setSrch] = useState(null)
-  const onLoad = (autoC) => setSrch(autoC)
-  const onplaceChange = () => {
-    const lat = srch.getPlace().geometry.location.lat()
-    const lng = srch.getPlace().geometry.location.lng()
-    setCoordinates({ lat, lng })
-  }
 
   return (
     <div>
@@ -91,18 +31,9 @@ function Header ({ setCoordinates }) {
               <Bars3Icon className='h-6 w-6' aria-hidden='true' />
             </button>
           </div>
-         
+
           <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-            <p className='text-sm font-semibold leading-6 text-gray-900'>
-              <Autocomplete onplaceChange={onplaceChange} onLoad={onLoad}>
-                <input
-                  type='text'
-                  name=''
-                  id=''
-                  className='px-4 outline-none   rounded-lg shadow-md py-2'
-                />
-              </Autocomplete>
-            </p>
+            <p className='text-sm font-semibold leading-6 text-gray-900'></p>
           </div>
         </nav>
         <Dialog
@@ -129,19 +60,7 @@ function Header ({ setCoordinates }) {
             </div>
             <div className='mt-6 flow-root'>
               <div className='-my-6 divide-y divide-gray-500/10'>
-               
-                <div className='py-6'>
-                  <p className='text-sm font-semibold leading-6 text-gray-900'>
-                    <Autocomplete onplaceChange={onplaceChange} onLoad={onLoad}>
-                      <input
-                        type='text'
-                        name=''
-                        id=''
-                        className='px-4 outline-none   rounded-lg shadow-md py-2'
-                      />
-                    </Autocomplete>
-                  </p>
-                </div>
+                <div className='py-6'></div>
               </div>
             </div>
           </Dialog.Panel>

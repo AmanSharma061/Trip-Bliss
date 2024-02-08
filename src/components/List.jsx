@@ -29,29 +29,18 @@ function List ({ coordinates, bounds, childclicked }) {
     const sw = bounds.sw
     // setIsLoading(true)
 
-    if(ne && sw){
+    if (ne && sw) {
       getPlacesData(type, ne, sw).then(data => {
-
-      
         setPlaces(data.filter(place => place.name && place.num_reviews > 0))
-  
       })
     }
-    
-
   }, [coordinates, bounds, type, rating])
 
   return (
     <div>
-      {/* <div>
-        <h1 className='font-bold pb-2 px-4 text-center text-2xl '>
-          Hotels , Resturants and Attractions Around You
-        </h1>
-      </div> */}
+
       <div className='hidden'>
-      <Map
-       type={type}
-      />
+        <Map type={type} />
       </div>
       <div className='grid grid-cols-3 md:grid-cols-7 md:px-2 ml-4 font-semibold  md:gap-x-32  gap-x-8 '>
         <div>
@@ -87,7 +76,7 @@ function List ({ coordinates, bounds, childclicked }) {
 
       {/* Resturants Details Card */}
       <div className=' h-[75vh]  mt-5 overflow-x-scroll shadow-inner mx-2'>
-        {filtered.length ? (
+        {filtered.length>0 ? (
           <>
             {filtered?.map((place, i) => (
               <div className='grid grid-cols-1' key={i} ref={elementRefs[i]}>
